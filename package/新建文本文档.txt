@@ -1,0 +1,11 @@
+ centos-indexhtml                         noarch              7-9.el7.centos               base               92 k
+ gd                                       x86_64              2.0.35-26.el7                base              146 k
+ gperftools-libs                          x86_64              2.6.1-1.el7                  base              272 k
+ libXpm                                   x86_64              3.5.12-1.el7                 base               55 k
+ nginx-all-modules                        noarch              1:1.16.1-1.el7               epel               19 k
+ nginx-filesystem                         noarch              1:1.16.1-1.el7               epel               21 k
+ nginx-mod-http-image-filter              x86_64              1:1.16.1-1.el7               epel               30 k
+ nginx-mod-http-perl                      x86_64              1:1.16.1-1.el7               epel               39 k
+ nginx-mod-http-xslt-filter               x86_64              1:1.16.1-1.el7               epel               29 k
+ nginx-mod-mail                           x86_64              1:1.16.1-1.el7               epel               57 k
+ nginx-mod-stream                         x86_64              1:1.16.1-1.el7               epel               84 k
