@@ -1,6 +1,11 @@
 ## gerrit下载安装
 ### 安装前的注意事项
-关闭防火墙 `systemctl stop firewalld`
+关闭防火墙 
+
+```
+systemctl stop firewalld
+systemctl disable firewalld #禁止开机启动
+```
 
 ### 数据库在线安装
 #### 删除原有的安装的mariadb
@@ -166,16 +171,24 @@ mysql
 systemctl restart mariadb   重启数据库服务
 
 ```
-### 下载
-以下的安装使用的是root用户，安装目录为`/var/gerrit`
+### 安装Gerrit
 
-`wget https://gerrit-releases.storage.googleapis.com/gerrit-2.12.2.war`
+#### 下载
+以下的安装使用的是root用户，安装目录为`/usr/local/gerrit`
 
-### 安装
+```
+mkdir -p /usr/local/gerrit
+cd /usr/local/gerrit
+wget https://gerrit-releases.storage.googleapis.com/gerrit-2.12.2.war
+```
 
-`java -jar gerrit-2.12.2.war init -d review_site`
+#### 安装
 
-此时可一直回车采用默认配置（安装过程中最后部分是插件安装，可以此时安装(在外网的情况下)，也可后续安装），生成的配置文件`review_site/etc/gerrit.config`内容如下：
+```
+java -jar gerrit-2.12.2.war init -d /usr/local/gerrit
+```
+
+此时可一直回车采用默认配置（安装过程中最后部分是插件安装，可以此时安装(在外网的情况下)，也可后续安装），生成的配置文件`/usr/local/gerrit/etc/gerrit.config`内容如下：
 ```
 [gerrit]
         basePath = git
@@ -210,18 +223,18 @@ htpasswd -m /usr/local/gerrit/gerrit.password gerrit
 ```
 ### 添加其他账号
 ```
-htpasswd -b /gerrit.password Jack 123456
+htpasswd -b /usr/local/gerrit/gerrit.password Jack 123456lq?
 ```
-设置密码为123456a?
+
  
 没有htpasswd工具，执行 `yum install httpd-tools`
 
 
 ### 安装httpd（暂时不用）
 
-1.安装 `yum install httpd`
+1. 安装 `yum install httpd`
 
-2.配置 `vim /etc/httpd/conf/httpd.conf`，增加以下配置
+2. 配置 `vim /etc/httpd/conf/httpd.conf`，增加以下配置
 
 ```
 IncludeOptional conf.d/*.conf
@@ -251,13 +264,13 @@ IncludeOptional conf.d/*.conf
 
 ### 安装nginx
 
-1.添加yum源，因为默认没有源没有
+1. 添加yum源，因为默认没有源没有
 
 `rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm`
 
-2.安装 `yum install -y nginx`
+2. 安装 `yum install -y nginx`
 
-3.配置 `vim /etc/nginx/nginx.conf`
+3. 配置 `vim /etc/nginx/nginx.conf`
 
 用以下代码替换源文件中的http部分，主要是serve部分
 
@@ -315,10 +328,9 @@ http {
 ###
 启动服务
 
-```
-service httpd start
-service nginx start
-/(yourPath)/review_site/bin/gerrit.sh start
+``` 
+systemctl start nginx 
+/usr/local/gerrit/bin/gerrit.sh start # 重启start改为restart
 ```
 
 >出现问题：nginx启动失败
