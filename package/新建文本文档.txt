@@ -9,3 +9,12 @@
  nginx-mod-http-xslt-filter               x86_64              1:1.16.1-1.el7               epel               29 k
  nginx-mod-mail                           x86_64              1:1.16.1-1.el7               epel               57 k
  nginx-mod-stream                         x86_64              1:1.16.1-1.el7               epel               84 k
+
+
+nginx.x86_64 1:1.16.1-1.el7
+centos-indexhtml.noarch 0:7-9.el7.centos                     gd.x86_64 0:2.0.35-26.el7                           
+  gperftools-libs.x86_64 0:2.6.1-1.el7                         libXpm.x86_64 0:3.5.12-1.el7                        
+  nginx-all-modules.noarch 1:1.16.1-1.el7                      nginx-filesystem.noarch 1:1.16.1-1.el7              
+  nginx-mod-http-image-filter.x86_64 1:1.16.1-1.el7            nginx-mod-http-perl.x86_64 1:1.16.1-1.el7           
+  nginx-mod-http-xslt-filter.x86_64 1:1.16.1-1.el7             nginx-mod-mail.x86_64 1:1.16.1-1.el7                
+  nginx-mod-stream.x86_64 1:1.16.1-1.el7 

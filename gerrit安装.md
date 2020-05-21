@@ -155,7 +155,7 @@ chown mysql:mysql /var/log/mysqld.log
 ```
 mysql
 
->create user  gerrit  identified  by  '123456';              ##账号及密码
+>create user  gerrit  identified  by  '123456lq?';              ##账号及密码
 
 >create database  reviewdb  default  character  set  'utf8';   ##创建数据库并设置utf-8格式
 
@@ -205,8 +205,8 @@ systemctl restart mariadb   重启数据库服务
 ```
 ### 生成管理员账号
 ```
-touch /gerrit.password
-htpasswd -m /gerrit.password admin
+touch /usr/local/gerrit/gerrit.password
+htpasswd -m /usr/local/gerrit/gerrit.password gerrit
 ```
 ### 添加其他账号
 ```
@@ -293,7 +293,7 @@ http {
 
         location / {
             auth_basic              "Gerrit Code Review";
-            auth_basic_user_file    /gerrit.password;
+            auth_basic_user_file    /usr/local/gerrit/gerrit.password;
             proxy_pass              http://127.0.0.1:8080;
             proxy_set_header        X-Forwarded-For $remote_addr;
             proxy_set_header        Host $host;
@@ -414,6 +414,9 @@ setenforce 1    ##设置SELinux 成为enforcing模式
 
 Tags: selinux , nginx绑定端口失败
 ```
+3. 在初始化gerrit的时候出现mysql-connect的错误
+
+将connect的jar放到`/usr/local/gerrit/lib`文件夹下
 ### 参考文档
 https://www.cnblogs.com/kevingrace/p/5651447.html
 
