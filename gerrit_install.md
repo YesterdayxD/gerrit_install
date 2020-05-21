@@ -101,7 +101,6 @@ create user username@localhost identified by 'password';
 grant all privileges on *.* to username@'%' identified by 'password';
 ```
 
-yum  -y  install mariadb-server
 ### 数据库离线安装
 1. 准备用户
 ```
