@@ -73,7 +73,7 @@ threads = 3
 
 ### gerrit 与 gitlab互信
 
-在两个机器的`/root/.ssh/authorized_keys`添加两个机器的公钥。公钥位于`/root/.ssh/id_rsa.pub`中。
+在两个机器的`/root/.ssh/authorized_keys`添加两个机器的公钥。公钥位于`/root/.ssh/id_rsa.pub`中。此时需要先ssh互相登录一下。（不登陆可能导致replication不能触发）
 
 修改gerrit的机器上`/root/.ssh/config`文件配置如下：
 

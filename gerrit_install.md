@@ -6,6 +6,17 @@
 systemctl stop firewalld
 systemctl disable firewalld #禁止开机启动
 ```
+修改主机名(可能会影响replication的同步，但是不确定，建议执行)
+```
+# vim /etc/hosts
+
+127.0.0.1   localhost gerrit localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+10.7.11.211 gerrit
+
+# reboot
+```
 
 ### 数据库在线安装
 #### 删除原有的安装的mariadb
@@ -184,10 +195,12 @@ wget https://gerrit-releases.storage.googleapis.com/gerrit-2.12.2.war
 #### 安装
 
 ```
-java -jar gerrit-2.12.2.war init -d /usr/local/gerrit
+java -jar gerrit-2.12.2.war init -d /usr/local/gerrit # 也可以使用2.14.3版本
 ```
 
-此时可一直回车采用默认配置（安装过程中最后部分是插件安装，可以此时安装(在外网的情况下)，也可后续安装），生成的配置文件`/usr/local/gerrit/etc/gerrit.config`内容如下：
+此时可一直回车采用默认配置（安装过程中最后部分是插件安装，可以此时安装(在外网的情况下)，也可后续安装），生成的配置文件。
+此时可能会出现mysql-connector-java-5.1.41.jar的下载安装提示，可以选择no，后续将这个jar包复制到/usr/local/gerrit/lib下即可。（gerrit-2.12.2.war对应的jar包版本为5.1.21，gerrit-2.14.3.war对应的jar包版本为5.1.41）
+`/usr/local/gerrit/etc/gerrit.config`内容如下：
 ```
 [gerrit]
         basePath = git
