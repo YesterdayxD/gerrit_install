@@ -15,16 +15,14 @@ import sys
 ###
 GERRIT_PATH = "/usr/local/gerrit/gerrit.password"
 PASSWORD = "qwerty123456"
-group_A = ["wangzhen02", "zhengyuhui", "zhaorenming", "wangjiyu",
-           "xingliangzh", "wangwenxiao01"]
-group_B = ["sunliaodong", "zhangshubo", "caowenkang", "chenlihua01"
-           , "liuxuewen" ]
-group_C = ["sunliangchen", "jiguiyang","yuanlijie","xuruqing01","liuhuixing"]
-group_D = ["fangty", "zhang.hao02","lubing","limeiying","lishigang01"]
-group_E = ["wangkaibj", "yangzhiguang","zhaoxiaoyao","liuyiliang","houxiaoyu01"]
-group_F = ["wangdekui", "linxinyu", "wangb.in"]
-group_G = ["chaowang", "zhangyuyan"]
-group_H = ["chenpei01"]
+group_A = ["aa"]
+group_B = ["bb" ]
+group_C = ["cc"]
+group_D = [""]
+group_E = [""]
+group_F = [""]
+group_G = [""]
+group_H = [""]
 all_group = [group_A, group_B, group_C, group_D, group_E, group_F, group_G]
 if len(sys.argv) < 2:
     for group in all_group:

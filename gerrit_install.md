@@ -231,11 +231,19 @@ java -jar gerrit-2.12.2.war init -d /usr/local/gerrit # 也可以使用2.14.3版
 ### 生成管理员账号
 ```
 touch /usr/local/gerrit/gerrit.password
-htpasswd -m /usr/local/gerrit/gerrit.password gerrit
+htpasswd -b /usr/local/gerrit/gerrit.password gerrit 123456lq?
 ```
 ### 添加其他账号
 ```
 htpasswd -b /usr/local/gerrit/gerrit.password Jack 123456lq?
+```
+### 修改账号
+```
+htpasswd -b /usr/local/gerrit/gerrit.password Jack 123456jack?
+```
+### 删除账号
+```
+htpasswd -D /usr/local/gerrit/gerrit.password Jack
 ```
 
  
