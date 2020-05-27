@@ -112,7 +112,7 @@ create user username@localhost identified by 'password';
 grant all privileges on *.* to username@'%' identified by 'password';
 ```
 
-### 数据库离线安装
+### 数据库离线安装方式一（不推荐）
 1. 准备用户
 ```
     groupadd -r -g 306 mysql
@@ -166,7 +166,7 @@ chown mysql:mysql /var/log/mysqld.log
     echo PATH=/usr/local/mysql/bin:$PATH >> /etc/profile.d/mysql.sh
     . /etc/profile.d/mysql.sh # 使之生效
 ```
-
+10. 创建数据库
 ```
 mysql
 
@@ -181,6 +181,30 @@ mysql
 systemctl restart mariadb   重启数据库服务
 
 ```
+### 数据库离线安装方式二（推荐）
+采用rpm包来安装
+
+一共有四个rpm包分别是：
+```
+# 版本号根据实际情况选择
+mariadb-5.5.64-1.el7.x86_64
+mariadb-devel-5.5.64-1.el7.x86_64
+mariadb-libs-5.5.64-1.el7.x86_64
+mariadb-server-5.5.64-1.el7.x86_64
+```
+执行命令 
+```
+yum localinstall 包名
+```
+配置安全选项
+```
+mysql_secure_installation
+```
+创建数据库
+```
+同方式一 第10条
+```
+
 ### 安装Gerrit
 
 #### 下载
