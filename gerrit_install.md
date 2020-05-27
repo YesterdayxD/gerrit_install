@@ -449,6 +449,18 @@ Tags: selinux , nginx绑定端口失败
 3. 在初始化gerrit的时候出现mysql-connect的错误
 
 将connect的jar放到`/usr/local/gerrit/lib`文件夹下
+
+### 邮箱配置
+在内网环境下关于邮箱的配置
+
+在accounts中的preferred的字段和account_external_ids中的email_address字段添加邮箱，重启Gerrit服务
+
+### 关于refs/for/*和refs/heads/*的问题
+
+将reference设置为refs/heads/*，会出现直接提交到gitlab的情况，设置为refs/for/*会走相应的Gerrit流程。
+
+
+
 ### 参考文档
 https://www.cnblogs.com/kevingrace/p/5651447.html
 
