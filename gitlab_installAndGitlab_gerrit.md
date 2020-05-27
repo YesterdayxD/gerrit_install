@@ -69,7 +69,25 @@ push = +refs/tags/*:refs/tags/*
 push = +refs/changes/*:refs/changes/*
 threads = 3
 ```
-如果有新的项目添加，继续在此文件添加相应的项目即可
+如果有新的项目添加，继续在此文件添加相应的项目即可。对于多个项目，形式需要做修改。将地址改为项目名称。
+```
+[remote "test1"] 
+projects = test1 //项目名称
+url = git@10.180.207.90:dev-group/test1.git //此处还可以配置其他，可能对提交方式有影响，不明确
+push = +refs/heads/*:refs/heads/*
+push = +refs/tags/*:refs/tags/*
+push = +refs/changes/*:refs/changes/*
+threads = 3
+
+[remote "test2"] 
+projects = test2 //项目名称
+url = git@10.180.207.90:dev-group/test2.git //此处还可以配置其他，可能对提交方式有影响，不明确
+push = +refs/heads/*:refs/heads/*
+push = +refs/tags/*:refs/tags/*
+push = +refs/changes/*:refs/changes/*
+threads = 3
+```
+
 
 ### gerrit 与 gitlab互信
 
