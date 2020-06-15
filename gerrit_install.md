@@ -6,6 +6,14 @@
 systemctl stop firewalld
 systemctl disable firewalld #禁止开机启动
 ```
+
+永久关闭selinux
+
+```
+修改/etc/selinux/config 文件
+将SELINUX=enforcing改为SELINUX=disabled
+```
+
 修改主机名(可能会影响replication的同步，但是不确定，建议执行)
 ```
 # vim /etc/hosts
@@ -195,6 +203,10 @@ mariadb-server-5.5.64-1.el7.x86_64
 执行命令 
 ```
 yum localinstall 包名
+
+systemctl start mariadb #启动服务
+systemctl status mariadb #查看状态
+systemctl enable mariadb #设置开机启动
 ```
 配置安全选项
 ```
@@ -206,6 +218,11 @@ mysql_secure_installation
 ```
 
 ### 安装Gerrit
+
+#### 安装java
+```
+yum install -y java
+```
 
 #### 下载
 以下的安装使用的是root用户，安装目录为`/usr/local/gerrit`
@@ -365,7 +382,16 @@ http {
         }
 }
 ```
+
+启动
+```
+systemctl start nginx #启动服务
+systemctl status nginx #查看状态
+systemctl enable nginx #设置开机启动
+```
+
 文件中的`listen 1357 default_server`为新的访问端口号
+
 
 注意`proxy_pass http://127.0.0.1:8080`中的端口号需要跟安装gerrit时的设置保持一致，后续可以通过修改`gerrit中etc/gerrit.config`进行设置
 
