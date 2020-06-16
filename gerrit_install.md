@@ -23,6 +23,8 @@ systemctl disable firewalld #禁止开机启动
 
 10.7.11.211 gerrit
 
+# hostnamectl --static set-hostname gerrit
+
 # reboot
 ```
 
@@ -246,7 +248,7 @@ java -jar gerrit-2.12.2.war init -d /usr/local/gerrit # 也可以使用2.14.3版
 [gerrit]
         basePath = git
         serverId = 5553780e-2bae-49a4-b253-37a587766d29
-        canonicalWebUrl = http://10.7.11.212:8080/ # 访问地址，后续需要设置反向代理，实际的访问端口不再是8080
+        canonicalWebUrl = http://10.7.11.212:2020/ # 访问地址
 [database]
         type = mysql 
         hostname = 你的机器ip
@@ -265,7 +267,7 @@ java -jar gerrit-2.12.2.war init -d /usr/local/gerrit # 也可以使用2.14.3版
 [sshd]
         listenAddress = *:29418
 [httpd]
-        listenUrl = http://*:8080/
+        listenUrl = http://*:8889/
 [cache]
         directory = cache                         
 ```
@@ -358,7 +360,7 @@ http {
     include /etc/nginx/conf.d/*.conf;
 
     server {
-        listen       1357 default_server;
+        listen       2020 default_server;
         server_name  _;
         root         /usr/share/nginx/html;
 
@@ -368,7 +370,7 @@ http {
         location / {
             auth_basic              "Gerrit Code Review";
             auth_basic_user_file    /usr/local/gerrit/gerrit.password;
-            proxy_pass              http://127.0.0.1:8080;
+            proxy_pass              http://127.0.0.1:8889;
             proxy_set_header        X-Forwarded-For $remote_addr;
             proxy_set_header        Host $host;
         }
@@ -390,10 +392,10 @@ systemctl status nginx #查看状态
 systemctl enable nginx #设置开机启动
 ```
 
-文件中的`listen 1357 default_server`为新的访问端口号
+文件中的`listen 2020 default_server`为新的访问端口号
 
 
-注意`proxy_pass http://127.0.0.1:8080`中的端口号需要跟安装gerrit时的设置保持一致，后续可以通过修改`gerrit中etc/gerrit.config`进行设置
+注意`proxy_pass http://127.0.0.1:8889`中的端口号需要跟安装gerrit的[httpd]listenUrl字段设置保持一致，后续可以通过修改`gerrit中etc/gerrit.config`进行设置
 
 ###
 启动服务
